@@ -21,9 +21,10 @@ class UserController extends Controller
     }
     public function index()
     {
-         $users = User::latest()->get();
-         return view('users.user',compact('users'));
 
+        $users = User::latest()->get();
+         return view('users.user',compact('users')); 
+         
     }
 
     /**

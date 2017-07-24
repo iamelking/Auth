@@ -37,12 +37,16 @@
 					@endif
 				</td>	
 				<td>
+				@permission('role-edit')
 				<a href="{{route('role.edit',$role->id)}}" class="btn btn-info btn-sm">Edit</a>
+				@endpermission
+				@permission('role-delete')
 				<form action="{{route('role.destroy',$role->id)}}" method="post">
 				{{csrf_field()}}
 				{{method_field('DELETE')}}
 					<button type="submit" class="btn btn-warning btn-sm">Delete</button>
 				</form>
+				@endpermission
 				</td>
 			</tr>
 		@empty

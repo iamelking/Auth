@@ -9,7 +9,10 @@
     @endif
 	<table class="table table-stripped table-bordered">
 		<div class="form-group">
-		<caption><h1>Student Management &nbsp;<a href="{{route('student.create')}}" class="btn btn-primary">Create</a></h1>
+		<caption><h1>Student Management &nbsp;
+		@permission('student-create')
+		<a href="{{route('student.create')}}" class="btn btn-primary">Create</a></h1>
+		@endpermission
 		</caption>
 		</div>
 		<thead>
@@ -30,13 +33,16 @@
 				<td>{{$student->contact}}</td>
 				<td>{{$student->course}}</td>
 				<td>
-				{{-- <button type="button" class="btn btn-info">Edit</button> --}}
+				@permission('student-edit')
 				<a href="{{route('student.edit',$student->id)}}" class="btn btn-info btn-sm">Edit</a>
+				@endpermission
+				@permission('student-delete')
 				<form action="{{route('student.destroy',$student->id)}}" method="post">
 				{{csrf_field()}}
 				{{method_field('DELETE')}}
 					<button type="submit" class="btn btn-warning btn-sm">Delete</button>
 				</form>
+				@endpermission
 				</td>
 			</tr>
 		@empty
